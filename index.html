@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AAMVA to PDF417 Generator</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <style>
+
+      body {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        /* background-color: #3b5998 !important; */
+      }
+
+      .header {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        font-weight: bold;
+        font-size: 20px;
+        text-align: center;
+      }
+
+      /* .container {
+        position: relative;
+        width: 80%;
+      } */
+
+      .main {
+        background: #00a4ef;
+      }
+
+      #text {
+        position: relative;
+        margin: 0 auto;
+        left: 30px;
+      }
+
+      h2.ui.center.header {
+        margin: 1em 0em 2em !important;
+      }
+
+      .ui.selection.dropdown {
+        /* min-width: 178px !important; */
+      }
+
+      #code {
+        position: relative;
+        margin: 10px;
+        font-size: 12px;
+        font-weight: bold;
+        overflow: hidden;
+      }
+
+      .ui.form textarea {
+      }
+
+      #barcode {
+        position: relative;
+        left: 8%;
+        width:530;
+        height: 72;
+        background-color: seashell;
+      }
+
+      .ui.white.segments {
+        padding: 10px;
+        padding-left: 100px;
+        background: #ffffff;
+      }
+    </style>
+  </head>
+  <body class="main">
+  <!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    <h2 class="ui center aligned header">
+      AAMVA To PDF417 Generator</h2>
+      <div class="ui fluid container">
+      <form class="ui form" action="POST">
+        <div class="ui one column grid">
+          <div class="ui text container">
+            <div class="ui white segments">
+              <canvas id="barcode"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="ui four column grid">
+          <div class="column"></div>
+          <div class="column">
+            <div class="column">
+              <div class="ui fluid input">
+                <input id="fname" name="fname" type="text" placeholder="First Name">
+              </div>
+            </div>
+            <div class="column">
+              <div class="ui fluid input">
+                <input id="mname" name="mname" type="text" placeholder="Middle Name">
+              </div>
+            </div>
+            <div class="column">
+              <div class="ui fluid input">
+                <input id="lastname" name="lastname" type="text" placeholder="Last Name">
+              </div>
+            </div>
+            <div class="column">
+              <div class="ui fluid input">
+                <input id="dob" name="dob" type="text" placeholder="DOB MMDDYYYY">
+              </div>
+            </div>
+            <div class="column">
+              <div class="ui fluid input">
+                <input id="issue_date" name="issue_date" type="text" placeholder="Issue Date MMDDYYYY">
+              </div>
+            </div>
+          </div>
+          <div class="column">
+            <div class="column">
+              <div class="ui fluid input">
+                <input id="height_inches" name="height_inches" type="text" placeholder="3 Digit Height in Inches (ex: 085)">
+              </div>
+            </div>
+            <div class="column">
+              <div class="ui fluid input">
+                <input id="eye_color" name="eye_color" type="text" placeholder="Eye Color (BLU)">
+              </div>
+            </div>
+            <div class="column">
+              <select id="gender" name="gender" class="ui fluid dropdown">
+                <option value="">Gender</option>
+                <option value="1">Male</option>
+                <option value="0">Female</option>
+              </select>
+            </div>
+            <div class="column">
+              <div class="ui fluid input">
+                <input id="discriminatory_number" name="discriminatory_number" type="text" placeholder="DD Number">
+              </div>
+            </div>
+            <div class="column">
+              <div class="ui fluid input">
+                <input id="hair_color" name="hair_color" type="text" placeholder="Hair Color (BLK">
+              </div>
+            </div>
+          </div>
+          <div class="column"></div>
+        </div>
+        <div class="ui text container">
+          <div class="ui one column grid">
+            <div class="column">
+              <div class="ui fluid input">
+                <textarea id="code" oninput="generate()" onchange="generate" >@
+ANSI 636020090102ID00410260ZC03010010IDDAQ170310312
+DCSWAKEHOUSE
+DDEU
+DACMICHAEL
+DDFU
+DADCLINTON
+DDGU
+DBD08032015
+DBB07281986
+DBA07282020
+DBC1
+DAU071 in
+DAYBRO
+DAG11962 E Lake Cir
+DAIGREENWOOD VILLAGE
+DAJCO
+DAK801110000
+DCF873845
+DCGUSA
+DDAF
+DAZBRO
+DCJCOID_0_082418_04105
+DCLU
+DAW150 ZCZCANONE</textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    
+<style>
+  .last.container {
+    margin-bottom: 300px !important;
+  }
+  h1.ui.center.header {
+    margin-top: 3em;
+  }
+  h2.ui.center.header {
+    margin: 4em 0em 2em;
+  }
+  h3.ui.center.header {
+    margin-top: 2em;
+    padding: 2em 0em;
+  }
+</style>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+<script src="./lib/libbcmath.js" type="text/javascript"></script>
+<script src="./lib/bcmath.js" type="text/javascript"></script>
+<script src="./lib/pdf417.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+
+  var
+    $headers     = $('body > h3'),
+    $header      = $headers.first(),
+    ignoreScroll = false,
+    timer
+  ;
+
+  // Preserve example in viewport when resizing browser
+  
+  $('#gender')
+    .dropdown()
+  ;
+
+});
+
+function generate() {
+  var code = document.getElementById("code").value
+  var canvas = document.getElementById("barcode")
+  PDF417.draw(code, canvas, 7)
+}
+</script>
+</body>
+</html>
