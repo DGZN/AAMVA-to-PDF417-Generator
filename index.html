@@ -63,6 +63,10 @@
       .ui.form textarea {
       }
 
+      #pdf417 {
+        padding-left: 15%;
+      }
+
       #barcode {
         position: relative;
         left: 8%;
@@ -86,78 +90,18 @@
       AAMVA To PDF417 Generator</h2>
       <div class="ui fluid container">
       <form class="ui form" action="POST">
-        <div class="ui one column grid">
-          <div class="ui text container">
-            <div class="ui white segments">
-              <canvas id="barcode"></canvas>
-            </div>
-          </div>
-        </div>
-        <div class="ui four column grid">
-          <div class="column"></div>
-          <div class="column">
-            <div class="column">
-              <div class="ui fluid input">
-                <input id="fname" name="fname" type="text" placeholder="First Name">
-              </div>
-            </div>
-            <div class="column">
-              <div class="ui fluid input">
-                <input id="mname" name="mname" type="text" placeholder="Middle Name">
-              </div>
-            </div>
-            <div class="column">
-              <div class="ui fluid input">
-                <input id="lastname" name="lastname" type="text" placeholder="Last Name">
-              </div>
-            </div>
-            <div class="column">
-              <div class="ui fluid input">
-                <input id="dob" name="dob" type="text" placeholder="DOB MMDDYYYY">
-              </div>
-            </div>
-            <div class="column">
-              <div class="ui fluid input">
-                <input id="issue_date" name="issue_date" type="text" placeholder="Issue Date MMDDYYYY">
-              </div>
-            </div>
-          </div>
-          <div class="column">
-            <div class="column">
-              <div class="ui fluid input">
-                <input id="height_inches" name="height_inches" type="text" placeholder="3 Digit Height in Inches (ex: 085)">
-              </div>
-            </div>
-            <div class="column">
-              <div class="ui fluid input">
-                <input id="eye_color" name="eye_color" type="text" placeholder="Eye Color (BLU)">
-              </div>
-            </div>
-            <div class="column">
-              <select id="gender" name="gender" class="ui fluid dropdown">
-                <option value="">Gender</option>
-                <option value="1">Male</option>
-                <option value="0">Female</option>
-              </select>
-            </div>
-            <div class="column">
-              <div class="ui fluid input">
-                <input id="discriminatory_number" name="discriminatory_number" type="text" placeholder="DD Number">
-              </div>
-            </div>
-            <div class="column">
-              <div class="ui fluid input">
-                <input id="hair_color" name="hair_color" type="text" placeholder="Hair Color (BLK">
-              </div>
-            </div>
-          </div>
-          <div class="column"></div>
-        </div>
         <div class="ui text container">
           <div class="ui one column grid">
             <div class="column">
-              <div class="ui fluid input">
-                <textarea id="code" oninput="generate()" onchange="generate" >@
+              <div class="ui top attached tabular menu">
+                <a class="active item" data-tab="aamva">AAMVA</a>
+                <a class="item" data-tab="fields">FIELDS</a>
+                <a class="item" data-tab="pdf417">PDF417</a>
+              </div>
+              <div class="ui bottom attached active tab segment" data-tab="aamva">
+                <div class="ui fluid input">
+                  <textarea id="code" rows="25" oninput="generate()" onchange="generate">
+@
 ANSI 636020090102ID00410260ZC03010010IDDAQ170310312
 DCSWAKEHOUSE
 DDEU
@@ -181,8 +125,154 @@ DDAF
 DAZBRO
 DCJCOID_0_082418_04105
 DCLU
-DAW150 ZCZCANONE</textarea>
+DAW150 ZCZCANONE
+</textarea>
+                </div>
               </div>
+              <div class="ui bottom attached tab segment" data-tab="fields">
+                <div class="ui two column grid">
+                  <div class="column">
+                    <div class="field">
+                      <label for="id_number">ID Number</label>
+                      <input id="DAQ" name="id_number" type="text" placeholder="ID Number">
+                    </div>
+                    <div class="field">
+                      <label for="discriminatory_number">DD Number</label>
+                      <input id="DCF" name="discriminatory_number" type="text" placeholder="DD Number">
+                    </div>
+                    <div class="field">
+                      <label for="issue_date">Issue Date</label>
+                      <input id="DBB" name="issue_date" type="text" placeholder="Issue Date MMDDYYYY">
+                    </div>
+                    <div class="field">
+                      <label for="exp_date">Expiration Date</label>
+                      <input id="DBA" name="exp_date" type="text" placeholder="Expiration Date MMDDYYYY">
+                    </div>
+                    <div class="field">
+                      <label for="dob">Date of Birth</label>
+                      <input id="DBD" name="dob" type="text" placeholder="DOB MMDDYYYY">
+                    </div>
+                    <div class="field">
+                      <label for="fname">First Name</label>
+                      <input id="DAC" name="fname" type="text" placeholder="First Name">
+                      <input id="DDF" name="fname_truncation" type="text" hidden>
+                    </div>
+                    <div class="field">
+                      <label for="mnames">Middle Names(s)</label>
+                      <input id="DAD" name="mnames" type="text" placeholder="Middle Names (Comma seperated)">
+                      <input id="DDG" name="mnames_truncation" type="text" hidden>
+                    </div>
+                    <div class="field">
+                      <label for="surbane">Surname</label>
+                      <input id="DCS" name="surname" type="text" placeholder="Surname">
+                      <input id="DDE" name="sname_truncation" type="text" hidden>
+                    </div>
+                    
+                  </div>
+                  <div class="column">
+                    <div class="field">
+                      <label for="height_inches">Height</label>
+                      <input id="DAU" name="height_inches" type="text" placeholder="Height in Inches (ex: 085 in)">
+                    </div>
+                    <div class="field">
+                      <label for="gender">Gender</label>
+                      <select id="DBC" name="gender" class="ui fluid dropdown">
+                        <option value="">Gender</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="eye_color">Eye Color</label>
+                      <input id="DAY" name="eye_color" type="text" placeholder="Eye Color (BLU)">
+                    </div>
+                    <div class="field">
+                      <label for="address_street">Street</label>
+                      <input id="DAG" name="address_street" type="text" placeholder="Street Address (123 Main PL)">
+                    </div>
+                    <div class="field">
+                      <label for="address_city">City</label>
+                      <input id="DAI" name="address_city" type="text" placeholder="City Name">
+                    </div>
+                    <div class="field">
+                      <label for="State">State</label>
+                      <select id="DAJ" name="address_state" class="ui fluid dropdown">
+                        <option value="AL">Alabama</option>
+                        <option value="AK">Alaska</option>
+                        <option value="AZ">Arizona</option>
+                        <option value="AR">Arkansas</option>
+                        <option value="CA">California</option>
+                        <option value="CO">Colorado</option>
+                        <option value="CT">Connecticut</option>
+                        <option value="DE">Delaware</option>
+                        <option value="DC">District Of Columbia</option>
+                        <option value="FL">Florida</option>
+                        <option value="GA">Georgia</option>
+                        <option value="HI">Hawaii</option>
+                        <option value="ID">Idaho</option>
+                        <option value="IL">Illinois</option>
+                        <option value="IN">Indiana</option>
+                        <option value="IA">Iowa</option>
+                        <option value="KS">Kansas</option>
+                        <option value="KY">Kentucky</option>
+                        <option value="LA">Louisiana</option>
+                        <option value="ME">Maine</option>
+                        <option value="MD">Maryland</option>
+                        <option value="MA">Massachusetts</option>
+                        <option value="MI">Michigan</option>
+                        <option value="MN">Minnesota</option>
+                        <option value="MS">Mississippi</option>
+                        <option value="MO">Missouri</option>
+                        <option value="MT">Montana</option>
+                        <option value="NE">Nebraska</option>
+                        <option value="NV">Nevada</option>
+                        <option value="NH">New Hampshire</option>
+                        <option value="NJ">New Jersey</option>
+                        <option value="NM">New Mexico</option>
+                        <option value="NY">New York</option>
+                        <option value="NC">North Carolina</option>
+                        <option value="ND">North Dakota</option>
+                        <option value="OH">Ohio</option>
+                        <option value="OK">Oklahoma</option>
+                        <option value="OR">Oregon</option>
+                        <option value="PA">Pennsylvania</option>
+                        <option value="RI">Rhode Island</option>
+                        <option value="SC">South Carolina</option>
+                        <option value="SD">South Dakota</option>
+                        <option value="TN">Tennessee</option>
+                        <option value="TX">Texas</option>
+                        <option value="UT">Utah</option>
+                        <option value="VT">Vermont</option>
+                        <option value="VA">Virginia</option>
+                        <option value="WA">Washington</option>
+                        <option value="WV">West Virginia</option>
+                        <option value="WI">Wisconsin</option>
+                        <option value="WY">Wyoming</option>
+                      </select>
+                    </div>
+                    <div class="field">
+                      <label for="address_zip">ZIP</label>
+                      <input id="DAK" name="address_zip" type="text" placeholder="ZIP/Postal Code (9 digits [ZIP + 4 zeros])">
+                    </div>
+                    <div class="field">
+                      <label for="address_country">Country</label>
+                      <input id="DCG" name="address_country" type="text" placeholder="Country Code (US or CA)">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="pdf417" class="ui bottom attached tab segment" data-tab="pdf417">
+                <canvas id="barcode"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
+        <div class="ui text container">
+          <div class="ui one column grid">
+            <div class="column">
+              
             </div>
           </div>
         </div>
@@ -220,17 +310,79 @@ $(document).ready(function() {
     timer
   ;
 
-  // Preserve example in viewport when resizing browser
-  
-  $('#gender')
-    .dropdown()
-  ;
+  setTimeout(function () {
+    $('.menu .item')
+      .tab()
+    ;
+    
+    $('.ui.dropdown')
+      .dropdown()
+    ;
+  }, 10);
 
 });
 
+const codes = {
+  "DCA": "Jurisdiction-specific vehicle class",
+  "DCB": "Jurisdiction-specific restriction codes",
+  "DCD": "Jurisdiction-specific endorsement codes",
+  "DBA": "Document Expiration Date",
+  "DCS": "Customer Family Name",
+  "DAC": "Customer First Name",
+  "DAD": "Customer Middle Name(s)",
+  "DBD": "Document Issue Date",
+  "DBB": "Date of Birth",
+  "DBC": "Physical Description – Sex",
+  "DAY": "Physical Description – Eye Color",
+  "DAU": "Physical Description – Height",
+  "DAG": "Address – Street 1",
+  "DAI": "Address – City",
+  "DAJ": "Address – Jurisdiction Code",
+  "DAK": "Address – Postal Code",
+  "DAQ": "Customer ID Number",
+  "DCF": "Document Discriminator",
+  "DCG": "Country Identification",
+  "DDE": "Family name truncation",
+  "DDF": "First name truncation",
+  "DDG": "Middle name truncation",
+  "DAZ": "Hair colo"
+}
+
+let parsed = {}
+
 function generate() {
-  var code = document.getElementById("code").value
+  var code = document.getElementById("code").value.toUpperCase()
   var canvas = document.getElementById("barcode")
+  code.split('\n').forEach((c, i) => {
+    if (i == 1 && c.indexOf('ANSI')>-1 && c.indexOf('DAQ')>-1) {
+      let strID = c.split('DAQ')
+      parsed['DAQ'] = strID[1]
+    }
+    if (i > 1) {
+      var code = c.slice(0, 3)
+      var value = c.slice(3)
+      parsed[code] = value
+    }
+  })
+  Object.keys(parsed).forEach((k) => {
+    if (!k.length) return;
+    try {
+      switch (k) {
+        case 'DBC':
+          $('#'+k).dropdown('set selected', parsed[k])
+          break;
+          case 'DBC':
+            $('#'+k).dropdown('set selected', parsed)
+          break;
+        default:
+          $('#'+k).val(parsed[k])
+          break;
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  })
+  console.log(parsed)
   PDF417.draw(code, canvas, 7)
 }
 </script>
