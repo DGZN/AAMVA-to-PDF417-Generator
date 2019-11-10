@@ -134,49 +134,49 @@ DAW150 ZCZCANONE
                   <div class="column">
                     <div class="field">
                       <label for="id_number">ID Number</label>
-                      <input id="DAQ" name="id_number" type="text" placeholder="ID Number">
+                      <input id="DAQ" name="DAQ" type="text" placeholder="ID Number">
                     </div>
                     <div class="field">
                       <label for="discriminatory_number">DD Number</label>
-                      <input id="DCF" name="discriminatory_number" type="text" placeholder="DD Number">
+                      <input id="DCF" name="DCF" type="text" placeholder="DD Number">
                     </div>
                     <div class="field">
                       <label for="issue_date">Issue Date</label>
-                      <input id="DBB" name="issue_date" type="text" placeholder="Issue Date MMDDYYYY">
+                      <input id="DBB" name="DBB" type="text" placeholder="Issue Date MMDDYYYY">
                     </div>
                     <div class="field">
                       <label for="exp_date">Expiration Date</label>
-                      <input id="DBA" name="exp_date" type="text" placeholder="Expiration Date MMDDYYYY">
+                      <input id="DBA" name="DBA" type="text" placeholder="Expiration Date MMDDYYYY">
                     </div>
                     <div class="field">
                       <label for="dob">Date of Birth</label>
-                      <input id="DBD" name="dob" type="text" placeholder="DOB MMDDYYYY">
+                      <input id="DBD" name="DBD" type="text" placeholder="DOB MMDDYYYY">
                     </div>
                     <div class="field">
                       <label for="fname">First Name</label>
-                      <input id="DAC" name="fname" type="text" placeholder="First Name">
-                      <input id="DDF" name="fname_truncation" type="text" hidden>
+                      <input id="DAC" name="DAC" type="text" placeholder="First Name">
+                      <input id="DDF" name="DDF" type="text" hidden>
                     </div>
                     <div class="field">
                       <label for="mnames">Middle Names(s)</label>
-                      <input id="DAD" name="mnames" type="text" placeholder="Middle Names (Comma seperated)">
-                      <input id="DDG" name="mnames_truncation" type="text" hidden>
+                      <input id="DAD" name="DAD" type="text" placeholder="Middle Names (Comma seperated)">
+                      <input id="DDG" name="DDG" type="text" hidden>
                     </div>
                     <div class="field">
                       <label for="surbane">Surname</label>
-                      <input id="DCS" name="surname" type="text" placeholder="Surname">
-                      <input id="DDE" name="sname_truncation" type="text" hidden>
+                      <input id="DCS" name="DCS" type="text" placeholder="Surname">
+                      <input id="DDE" name="DDE" type="text" hidden>
                     </div>
                     
                   </div>
                   <div class="column">
                     <div class="field">
                       <label for="height_inches">Height</label>
-                      <input id="DAU" name="height_inches" type="text" placeholder="Height in Inches (ex: 085 in)">
+                      <input id="DAU" name="DAU" type="text" placeholder="Height in Inches (ex: 085 in)">
                     </div>
                     <div class="field">
                       <label for="gender">Gender</label>
-                      <select id="DBC" name="gender" class="ui fluid dropdown">
+                      <select id="DBC" name="DBC" class="ui fluid dropdown">
                         <option value="">Gender</option>
                         <option value="1">Male</option>
                         <option value="2">Female</option>
@@ -184,19 +184,19 @@ DAW150 ZCZCANONE
                     </div>
                     <div class="field">
                       <label for="eye_color">Eye Color</label>
-                      <input id="DAY" name="eye_color" type="text" placeholder="Eye Color (BLU)">
+                      <input id="DAY" name="DAY" type="text" placeholder="Eye Color (BLU)">
                     </div>
                     <div class="field">
                       <label for="address_street">Street</label>
-                      <input id="DAG" name="address_street" type="text" placeholder="Street Address (123 Main PL)">
+                      <input id="DAG" name="DAG" type="text" placeholder="Street Address (123 Main PL)">
                     </div>
                     <div class="field">
                       <label for="address_city">City</label>
-                      <input id="DAI" name="address_city" type="text" placeholder="City Name">
+                      <input id="DAI" name="DAI" type="text" placeholder="City Name">
                     </div>
                     <div class="field">
                       <label for="State">State</label>
-                      <select id="DAJ" name="address_state" class="ui fluid dropdown">
+                      <select id="DAJ" name="DAJ" class="ui fluid dropdown">
                         <option value="AL">Alabama</option>
                         <option value="AK">Alaska</option>
                         <option value="AZ">Arizona</option>
@@ -252,11 +252,14 @@ DAW150 ZCZCANONE
                     </div>
                     <div class="field">
                       <label for="address_zip">ZIP</label>
-                      <input id="DAK" name="address_zip" type="text" placeholder="ZIP/Postal Code (9 digits [ZIP + 4 zeros])">
+                      <input id="DAK" name="DAK" type="text" placeholder="ZIP/Postal Code (9 digits [ZIP + 4 zeros])">
                     </div>
                     <div class="field">
                       <label for="address_country">Country</label>
-                      <input id="DCG" name="address_country" type="text" placeholder="Country Code (US or CA)">
+                      <input id="DCG" name="DCG" type="text" placeholder="Country Code (USA or CA)">
+                      <input id="DDA" name="DDA" type="hidden" value="F" >
+                      <input id="DCJ" name="DCJ" type="hidden" value="COID_0_082418_04105" >
+                      <input id="DCL" name="DCL" type="hidden" value="U" >
                     </div>
                   </div>
                 </div>
@@ -301,48 +304,9 @@ DAW150 ZCZCANONE
 <script src="./lib/bcmath.js" type="text/javascript"></script>
 <script src="./lib/pdf417.js" type="text/javascript"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-
-  var
-    $headers     = $('body > h3'),
-    $header      = $headers.first(),
-    ignoreScroll = false,
-    timer
-  ;
-
-  setTimeout(function () {
-    $('.menu .item')
-      .tab()
-    ;
-    
-    $('.ui.dropdown')
-      .dropdown({
-        onChange: function (value, text, $selectedItem) {
-          console.log(`UPDATING WITH VALUE ${value}`);
-          updateAAMVA()
-        }
-      })
-    ;
-  }, 10);
-
-  generate()
-
-  $('#aamva :input').keyup(function () {
-    let id = $(this).attr('id');
-    switch (id) {
-      case 'code':
-        break;
-      
-      default:
-        console.log($(this).attr('id'), 'changed to', $(this).val())
-        updateAAMVA()
-        break;
-    }
-  })
-
-});
 
 const codes = {
+  "ANSI": "Format",
   "DCA": "Jurisdiction-specific vehicle class",
   "DCB": "Jurisdiction-specific restriction codes",
   "DCD": "Jurisdiction-specific endorsement codes",
@@ -365,48 +329,106 @@ const codes = {
   "DDE": "Family name truncation",
   "DDF": "First name truncation",
   "DDG": "Middle name truncation",
-  "DAZ": "Hair color"
+  "DAZ": "Hair color",
+  "DCJ": "Audit Information",
+  "DCL": "Ethnicity",
+  "DAH": "Street Address line 2)",
+  "DAZ": "Hair Color",
+  "DCI": "Place of Birth",
+  "DCJ": "Audit Information",
+  "DBN": "Alias Family Name",
+  "DBG": "Alias Given Name",
+  "DBS": "Alias Suffix Name",
+  "DCU": "Suffix",
+  "DCE": "Weight Range 0- 9",
+  "DAW": "Weight LBs",
+  "DAW": "Weight KGs",
+  "DDH": "Date Cardholder Turns 18",
+  "DDI": "Date Cardholder Turns 19",
+  "DDJ": "Date Cardholder Turns 21",
+  "DDK": "Organ Donor Indicator",
+  "DDL": "Veteran Indicator",
+  "DCL": "Ethnicity",
+  "DCM": "Standard Vehicle Classification",
+  "DCN": "Standard Endorsement Code",
+  "DCO": "Standard Restriction code",
+  "DCP": "Jurisdiction Specific Vehicle Classification",
+  "DCQ": "Jurisdiction Specific Endorsement Code Description",
+  "DCR": "Jurisdiction Specific Restriction Code Description",
+  "DCK": "Inventory Control Number",
+  "DDA": "Compliance Type",
+  "DDB": "Revision Date",
+  "DDC": "HazMat Endorsment Date",
+  "DDD": "Limited Duration Document Indicator"
 }
+
+$(document).ready(function() {
+
+  setTimeout(function () {
+
+    $('.menu .item')
+      .tab()
+    ;
+    
+    $('.ui.dropdown')
+      .dropdown({
+        onChange: function (value, text, $selectedItem) {
+          console.log(`UPDATING WITH VALUE ${value}`);
+          updateAAMVA()
+        }
+      })
+    ;
+  }, 10);
+
+  $('#code').val($('#code').val().toUpperCase())
+
+  generate()
+
+  $('#aamva :input').keyup(function () {
+    let id = $(this).attr('id');
+    switch (id) {
+      case 'code':
+        break;
+      default:
+        updateAAMVA()
+        break;
+    }
+  })
+
+});
 
 let lines = []
 let parsed = {}
+let sortedKeys;
+
+function codePosition (code) {
+  return Object.keys(codes).join(' ').indexOf(code)
+}
 
 function generate() {
-  var code = document.getElementById("code").value.toUpperCase()
-  var canvas = document.getElementById("barcode")
-  lines = code.split('\n');
-  lines.forEach((c, i) => {
-    if (i == 1 && c.indexOf('ANSI')>-1 && c.indexOf('DAQ')>-1) {
-      let strID = c.split('DAQ')
-      parsed['DAQ'] = strID[1]
-    }
-    if (i > 1) {
-      var code = c.slice(0, 3)
-      var value = c.slice(3)
-      parsed[code] = value
-    }
-  })
-  Object.keys(parsed).forEach((k) => {
-    if (!k.length) return;
-    try {
-      switch (k) {
-        case 'DBC':
-          $('#'+k).dropdown('set selected', parsed[k])
-          break;
-        case 'DBC':
-          $('#'+k).dropdown('set selected', parsed)
-          break;
-        case 'DAU':
-          $('#'+k).val(parsed[k].toLowerCase())
-          break;
-        default:
-          $('#'+k).val(parsed[k])
-          break;
+  let code = $('#code').val()
+  let canvas = $('#barcode')
+
+  lines = code.trim().split('\n');
+  lines.map((l) => {
+    Object.keys(codes).forEach((c, i) => {
+      if (l.replace(/ID|DL/g, '').indexOf(c) > -1) {
+        let match = l.split(c)
+        if (match) {
+          parsed[c] = match[1]
+        }
       }
-    } catch (error) {
-      console.error(error)
-    }
+    })
   })
+  
+  sortedKeys = Object.keys(parsed).sort((a, b) => { 
+    codePosition(a) > codePosition(b) 
+  })
+  
+  Object.keys(parsed).forEach((k) => {
+    $('form').form('set value', k, parsed[k])
+  })
+
   PDF417.draw(code, canvas, 7)
 }
 
