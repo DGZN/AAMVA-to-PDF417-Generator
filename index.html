@@ -89,7 +89,7 @@
     <h2 class="ui center aligned header">
       AAMVA To PDF417 Generator</h2>
       <div class="ui fluid container">
-      <form class="ui form" action="POST">
+      <form id="aamva" class="ui form" action="POST">
         <div class="ui text container">
           <div class="ui one column grid">
             <div class="column">
@@ -316,9 +316,29 @@ $(document).ready(function() {
     ;
     
     $('.ui.dropdown')
-      .dropdown()
+      .dropdown({
+        onChange: function (value, text, $selectedItem) {
+          console.log(`UPDATING WITH VALUE ${value}`);
+          updateAAMVA()
+        }
+      })
     ;
   }, 10);
+
+  generate()
+
+  $('#aamva :input').keyup(function () {
+    let id = $(this).attr('id');
+    switch (id) {
+      case 'code':
+        break;
+      
+      default:
+        console.log($(this).attr('id'), 'changed to', $(this).val())
+        updateAAMVA()
+        break;
+    }
+  })
 
 });
 
@@ -345,15 +365,17 @@ const codes = {
   "DDE": "Family name truncation",
   "DDF": "First name truncation",
   "DDG": "Middle name truncation",
-  "DAZ": "Hair colo"
+  "DAZ": "Hair color"
 }
 
+let lines = []
 let parsed = {}
 
 function generate() {
   var code = document.getElementById("code").value.toUpperCase()
   var canvas = document.getElementById("barcode")
-  code.split('\n').forEach((c, i) => {
+  lines = code.split('\n');
+  lines.forEach((c, i) => {
     if (i == 1 && c.indexOf('ANSI')>-1 && c.indexOf('DAQ')>-1) {
       let strID = c.split('DAQ')
       parsed['DAQ'] = strID[1]
@@ -371,8 +393,11 @@ function generate() {
         case 'DBC':
           $('#'+k).dropdown('set selected', parsed[k])
           break;
-          case 'DBC':
-            $('#'+k).dropdown('set selected', parsed)
+        case 'DBC':
+          $('#'+k).dropdown('set selected', parsed)
+          break;
+        case 'DAU':
+          $('#'+k).val(parsed[k].toLowerCase())
           break;
         default:
           $('#'+k).val(parsed[k])
@@ -382,8 +407,29 @@ function generate() {
       console.error(error)
     }
   })
-  console.log(parsed)
   PDF417.draw(code, canvas, 7)
+}
+
+
+function updateAAMVA() {
+  let combinedVals = ''
+  let inputVals = ''
+  $('#aamva :input').each(function () {
+    let id = $(this).attr('id');
+    let val = $(this).val();
+    switch (id) {
+      case 'code':
+        break;
+      case 'DAQ':
+        lines[1] = lines[1].replace(/DAQ.*/, `DAQ${val}`)
+        break;
+      default:
+        inputVals += `${id}${val}\n`
+        break;
+    }
+  });
+  combinedVals = `${lines[0]}\n${lines[1]}\n${inputVals}`;
+  $('#code').val(combinedVals)
 }
 </script>
 </body>
