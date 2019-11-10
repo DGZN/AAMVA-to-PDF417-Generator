@@ -407,7 +407,7 @@ function codePosition (code) {
 
 function generate() {
   let code = $('#code').val()
-  let canvas = $('#barcode')
+  let canvas = document.getElementById('barcode')
 
   lines = code.trim().split('\n');
   lines.map((l) => {
