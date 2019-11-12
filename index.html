@@ -20,6 +20,16 @@
         /* background-color: #3b5998 !important; */
       }
 
+      #background-video {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: -999;
+      }
+
+
       .header {
         position: relative;
         width: 100%;
@@ -44,8 +54,13 @@
         left: 30px;
       }
 
-      h2.ui.center.header {
-        margin: 1em 0em 2em !important;
+      
+      .ui.large.attached.header {
+        margin-top: 10px;
+        font-size: 1.2em;
+        color:#3949AB;
+        background: none;
+        border: 0px;
       }
 
       .ui.selection.dropdown {
@@ -67,6 +82,10 @@
         padding-left: 15%;
       }
 
+      .white.fixed.container {
+        background: white;
+      }
+
       #barcode {
         position: relative;
         left: 8%;
@@ -86,205 +105,206 @@
   <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <h2 class="ui center aligned header">
-      AAMVA To PDF417 Generator</h2>
-      <div class="ui fluid container">
-      <form id="aamva" class="ui form" action="POST">
-        <div class="ui text container">
-          <div class="ui one column grid">
-            <div class="column">
-              <div class="ui top attached tabular menu">
-                <a class="active item" data-tab="fields">FIELDS</a>
-                <a class="item" data-tab="aamva">AAMVA</a>
-                <a class="item" data-tab="standards" onclick="displayDownload()">DESIGN STANDARDS</a>
-                <a class="item" data-tab="pdf417">PDF417</a>
-              </div>
-              <div class="ui bottom attached active tab segment" data-tab="fields">
-                <div class="ui two column grid">
-                  <div class="column">
-                    <div class="field">
-                      <label for="DAQ">ID Number</label>
-                      <div class="ui right labeled input">
-                        <input id="DAQ" name="DAQ" type="text" placeholder="ID Number">
-                        <div class="ui label">DAQ</div>
+      
+      <div id="content" class="ui container">
+        <form id="aamva" class="ui form" action="POST">
+          <div class="ui text white fixed container">
+            <div class="ui one column grid">
+              <div class="column">
+                <div class="ui top attached tabular menu">
+                  <a class="active item" data-tab="fields" >FIELDS</a>
+                  <a class="item" data-tab="aamva" >AAMVA</a>
+                  <a class="item" data-tab="standards" >DESIGN STANDARDS</a>
+                  <a class="item" data-tab="pdf417" >PDF417</a>
+                </div>
+                <div id="fields-tab" class="ui bottom attached active tab segment" data-tab="fields">
+                  <div class="ui raised text segment">
+                    <div class="ui two column grid">
+                      <div class="column">
+                        <div class="field">
+                          <label for="DAQ">ID Number</label>
+                          <div class="ui right labeled input">
+                            <input id="DAQ" name="DAQ" type="text" placeholder="ID Number">
+                            <div class="ui label">DAQ</div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="DCF">DD Number</label>
+                          <div class="ui right labeled input">
+                            <input id="DCF" name="DCF" type="text" placeholder="DD Number">
+                            <div class="ui label">DCF</div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="DBB">Issue Date</label>
+                          <div class="ui right labeled input">
+                            <input id="DBB" name="DBB" type="text" placeholder="Issue Date MMDDYYYY">
+                            <div class="ui label">DBB</div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="DBA">Expiration Date</label>
+                          <div class="ui right labeled input">
+                            <input id="DBA" name="DBA" type="text" placeholder="Expiration Date MMDDYYYY">
+                            <div class="ui label">DBA</div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="DBD">Date of Birth</label>
+                          <div class="ui right labeled input">
+                            <input id="DBD" name="DBD" type="text" placeholder="DOB MMDDYYYY">
+                            <div class="ui label">DBD</div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="DAC">First Name</label>
+                          <div class="ui right labeled input">
+                            <input id="DAC" name="DAC" type="text" placeholder="First Name">
+                            <input id="DDF" name="DDF" type="text" hidden>
+                            <div class="ui label">DAC</div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="DAD">Middle Names(s)</label>
+                          <div class="ui right labeled input">
+                            <input id="DAD" name="DAD" type="text" placeholder="Middle Names (Comma seperated)">
+                            <input id="DDG" name="DDG" type="text" hidden>
+                            <div class="ui label">DAD</div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="DCS">Surname</label>
+                          <div class="ui right labeled input">
+                            <input id="DCS" name="DCS" type="text" placeholder="Surname">
+                            <input id="DDE" name="DDE" type="text" hidden>
+                            <div class="ui label">DCS</div>
+                          </div>
+                        </div>
+
                       </div>
-                    </div>
-                    <div class="field">
-                      <label for="DCF">DD Number</label>
-                      <div class="ui right labeled input">
-                        <input id="DCF" name="DCF" type="text" placeholder="DD Number">
-                        <div class="ui label">DCF</div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label for="DBB">Issue Date</label>
-                      <div class="ui right labeled input">
-                        <input id="DBB" name="DBB" type="text" placeholder="Issue Date MMDDYYYY">
-                        <div class="ui label">DBB</div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label for="DBA">Expiration Date</label>
-                      <div class="ui right labeled input">
-                        <input id="DBA" name="DBA" type="text" placeholder="Expiration Date MMDDYYYY">
-                        <div class="ui label">DBA</div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label for="DBD">Date of Birth</label>
-                      <div class="ui right labeled input">
-                        <input id="DBD" name="DBD" type="text" placeholder="DOB MMDDYYYY">
-                        <div class="ui label">DBD</div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label for="DAC">First Name</label>
-                      <div class="ui right labeled input">
-                        <input id="DAC" name="DAC" type="text" placeholder="First Name">
-                        <input id="DDF" name="DDF" type="text" hidden>
-                        <div class="ui label">DAC</div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label for="DAD">Middle Names(s)</label>
-                      <div class="ui right labeled input">
-                        <input id="DAD" name="DAD" type="text" placeholder="Middle Names (Comma seperated)">
-                        <input id="DDG" name="DDG" type="text" hidden>
-                        <div class="ui label">DAD</div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label for="DCS">Surname</label>
-                      <div class="ui right labeled input">
-                        <input id="DCS" name="DCS" type="text" placeholder="Surname">
-                        <input id="DDE" name="DDE" type="text" hidden>
-                        <div class="ui label">DCS</div>
-                      </div>
-                    </div>
-                    
-                  </div>
-                  <div class="column">
-                    <div class="field">
-                      <label for="height_inches">Height</label>
-                      <div class="ui right labeled input">
-                        <input id="DAU" name="DAU" type="text" placeholder="Height in Inches (ex: 085 in)">
-                        <div class="ui label">DAU</div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label for="DBC">Gender</label>
-                      <div class="ui right labeled input">
-                        <select id="DBC" name="DBC" class="ui fluid dropdown">
-                          <option value="">Gender</option>
-                          <option value="1">Male</option>
-                          <option value="2">Female</option>
-                        </select>
-                        <div class="ui label">DBC</div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label for="DAY">Eye Color</label>
-                      <div class="ui right labeled input">
-                        <input id="DAY" name="DAY" type="text" placeholder="Eye Color (BLU)">
-                        <div class="ui label">DBC</div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label for="DAG">Street</label>
-                      <div class="ui right labeled input">
-                        <input id="DAG" name="DAG" type="text" placeholder="Street Address (123 Main PL)">
-                        <div class="ui label">DAG</div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label for="DAI">City</label>
-                      <div class="ui right labeled input">
-                        <input id="DAI" name="DAI" type="text" placeholder="City Name">
-                        <div class="ui label">DAI</div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label for="DAJ">State</label>
-                      <div class="ui right labeled input">
-                        <select id="DAJ" name="DAJ" class="ui fluid dropdown">
-                        <option value="AL">Alabama</option>
-                        <option value="AK">Alaska</option>
-                        <option value="AZ">Arizona</option>
-                        <option value="AR">Arkansas</option>
-                        <option value="CA">California</option>
-                        <option value="CO">Colorado</option>
-                        <option value="CT">Connecticut</option>
-                        <option value="DE">Delaware</option>
-                        <option value="DC">District Of Columbia</option>
-                        <option value="FL">Florida</option>
-                        <option value="GA">Georgia</option>
-                        <option value="HI">Hawaii</option>
-                        <option value="ID">Idaho</option>
-                        <option value="IL">Illinois</option>
-                        <option value="IN">Indiana</option>
-                        <option value="IA">Iowa</option>
-                        <option value="KS">Kansas</option>
-                        <option value="KY">Kentucky</option>
-                        <option value="LA">Louisiana</option>
-                        <option value="ME">Maine</option>
-                        <option value="MD">Maryland</option>
-                        <option value="MA">Massachusetts</option>
-                        <option value="MI">Michigan</option>
-                        <option value="MN">Minnesota</option>
-                        <option value="MS">Mississippi</option>
-                        <option value="MO">Missouri</option>
-                        <option value="MT">Montana</option>
-                        <option value="NE">Nebraska</option>
-                        <option value="NV">Nevada</option>
-                        <option value="NH">New Hampshire</option>
-                        <option value="NJ">New Jersey</option>
-                        <option value="NM">New Mexico</option>
-                        <option value="NY">New York</option>
-                        <option value="NC">North Carolina</option>
-                        <option value="ND">North Dakota</option>
-                        <option value="OH">Ohio</option>
-                        <option value="OK">Oklahoma</option>
-                        <option value="OR">Oregon</option>
-                        <option value="PA">Pennsylvania</option>
-                        <option value="RI">Rhode Island</option>
-                        <option value="SC">South Carolina</option>
-                        <option value="SD">South Dakota</option>
-                        <option value="TN">Tennessee</option>
-                        <option value="TX">Texas</option>
-                        <option value="UT">Utah</option>
-                        <option value="VT">Vermont</option>
-                        <option value="VA">Virginia</option>
-                        <option value="WA">Washington</option>
-                        <option value="WV">West Virginia</option>
-                        <option value="WI">Wisconsin</option>
-                        <option value="WY">Wyoming</option>
-                        </select>
-                        <div class="ui label">DAJ</div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label for="DAK">ZIP</label>
-                      <div class="ui right labeled input">
-                        <input id="DAK" name="DAK" type="text" placeholder="ZIP/Postal Code (9 digits [ZIP + 4 zeros])">
-                        <div class="ui label">DAK</div>
-                      </div>
-                    </div>
-                    <div class="field">
-                      <label for="address_country">Country</label>
-                      <div class="ui right labeled input">
-                        <input id="DCG" name="DCG" type="text" placeholder="Country Code (USA or CA)">
-                        <input id="DDA" name="DDA" type="hidden" value="F" >
-                        <input id="DCJ" name="DCJ" type="hidden" value="COID_0_082418_04105" >
-                        <input id="DCL" name="DCL" type="hidden" value="U" >
-                        <div class="ui label">DCG</div>
+                      <div class="column">
+                        <div class="field">
+                          <label for="height_inches">Height</label>
+                          <div class="ui right labeled input">
+                            <input id="DAU" name="DAU" type="text" placeholder="Height in Inches (ex: 085 in)">
+                            <div class="ui label">DAU</div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="DBC">Gender</label>
+                          <div class="ui right labeled input">
+                            <select id="DBC" name="DBC" class="ui fluid dropdown">
+                              <option value="">Gender</option>
+                              <option value="1">Male</option>
+                              <option value="2">Female</option>
+                            </select>
+                            <div class="ui label">DBC</div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="DAY">Eye Color</label>
+                          <div class="ui right labeled input">
+                            <input id="DAY" name="DAY" type="text" placeholder="Eye Color (BLU)">
+                            <div class="ui label">DBC</div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="DAG">Street</label>
+                          <div class="ui right labeled input">
+                            <input id="DAG" name="DAG" type="text" placeholder="Street Address (123 Main PL)">
+                            <div class="ui label">DAG</div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="DAI">City</label>
+                          <div class="ui right labeled input">
+                            <input id="DAI" name="DAI" type="text" placeholder="City Name">
+                            <div class="ui label">DAI</div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="DAJ">State</label>
+                          <div class="ui right labeled input">
+                            <select id="DAJ" name="DAJ" class="ui fluid dropdown">
+                              <option value="AL">Alabama</option>
+                              <option value="AK">Alaska</option>
+                              <option value="AZ">Arizona</option>
+                              <option value="AR">Arkansas</option>
+                              <option value="CA">California</option>
+                              <option value="CO">Colorado</option>
+                              <option value="CT">Connecticut</option>
+                              <option value="DE">Delaware</option>
+                              <option value="DC">District Of Columbia</option>
+                              <option value="FL">Florida</option>
+                              <option value="GA">Georgia</option>
+                              <option value="HI">Hawaii</option>
+                              <option value="ID">Idaho</option>
+                              <option value="IL">Illinois</option>
+                              <option value="IN">Indiana</option>
+                              <option value="IA">Iowa</option>
+                              <option value="KS">Kansas</option>
+                              <option value="KY">Kentucky</option>
+                              <option value="LA">Louisiana</option>
+                              <option value="ME">Maine</option>
+                              <option value="MD">Maryland</option>
+                              <option value="MA">Massachusetts</option>
+                              <option value="MI">Michigan</option>
+                              <option value="MN">Minnesota</option>
+                              <option value="MS">Mississippi</option>
+                              <option value="MO">Missouri</option>
+                              <option value="MT">Montana</option>
+                              <option value="NE">Nebraska</option>
+                              <option value="NV">Nevada</option>
+                              <option value="NH">New Hampshire</option>
+                              <option value="NJ">New Jersey</option>
+                              <option value="NM">New Mexico</option>
+                              <option value="NY">New York</option>
+                              <option value="NC">North Carolina</option>
+                              <option value="ND">North Dakota</option>
+                              <option value="OH">Ohio</option>
+                              <option value="OK">Oklahoma</option>
+                              <option value="OR">Oregon</option>
+                              <option value="PA">Pennsylvania</option>
+                              <option value="RI">Rhode Island</option>
+                              <option value="SC">South Carolina</option>
+                              <option value="SD">South Dakota</option>
+                              <option value="TN">Tennessee</option>
+                              <option value="TX">Texas</option>
+                              <option value="UT">Utah</option>
+                              <option value="VT">Vermont</option>
+                              <option value="VA">Virginia</option>
+                              <option value="WA">Washington</option>
+                              <option value="WV">West Virginia</option>
+                              <option value="WI">Wisconsin</option>
+                              <option value="WY">Wyoming</option>
+                            </select>
+                            <div class="ui label">DAJ</div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="DAK">ZIP</label>
+                          <div class="ui right labeled input">
+                            <input id="DAK" name="DAK" type="text" placeholder="ZIP/Postal Code (9 digits [ZIP + 4 zeros])">
+                            <div class="ui label">DAK</div>
+                          </div>
+                        </div>
+                        <div class="field">
+                          <label for="address_country">Country</label>
+                          <div class="ui right labeled input">
+                            <input id="DCG" name="DCG" type="text" placeholder="Country Code (USA or CA)">
+                            <input id="DDA" name="DDA" type="hidden" value="F">
+                            <input id="DCJ" name="DCJ" type="hidden" value="COID_0_082418_04105">
+                            <input id="DCL" name="DCL" type="hidden" value="U">
+                            <div class="ui label">DCG</div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div class="ui bottom attached tab segment" data-tab="aamva">
-                <div class="ui fluid input">
-                  <textarea id="code" rows="25" oninput="generate()" onchange="generate">
+                <div id="aamva-tab" class="ui bottom attached tab segment" data-tab="aamva">
+                  <div class="ui text segment">
+                    <textarea id="code" rows="25" oninput="generate()" onchange="generate">
 @
 ANSI 636020090102ID00410260ZC03010010IDDAQ170310312
 DCSWAKEHOUSE
@@ -310,248 +330,253 @@ DAZBRO
 DCJCOID_0_082418_04105
 DCLU
 DAW150 ZCZCANONE
-                  </textarea>
+                      </textarea>
+                  </div>
+                </div>
+                <div id="standards-tab" class="ui bottom attached tab segment" data-tab="standards">
+                  <div class="ui text segment" >
+                    <a href="./public/2016_Card_Design_Standard.pdf" target="_blank">
+                      <div id="download_aamva_standard" class="ui icon message" onmouseover="transitionTab('download_aamva_standard')">
+                        <i class="download icon"></i>
+                        <div class="content">
+                          <div class="header">
+                            DOWNLOAD 2016 AAMVA Card Design Standard
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+                    <table class="ui celled striped table">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Name / Description</th>
+                          <th>Type</th>
+                          <th>Length</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><b>DCA</b></td>
+                          <td><b>Jurisdiction specific
+                              restriction codes</b><br> Jurisdiction-specific vehicle class / group code,
+                            designating the type of vehicle the cardholder
+                            has privilege to drive.</td>
+                          <td><b>DL</b></td>
+                          <td><b>V6ANS</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DCB</b></td>
+                          <td><b>Jurisdiction specific
+                              endorsement
+                              codes </b> </br> Jurisdiction-specific codes that represent
+                            restrictions to driving privileges (such as
+                            airbrakes, automatic transmission, daylight only,
+                            etc.).</td>
+                          <td><b>DL</b></td>
+                          <td><b>V12ANS</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DCD</b></td>
+                          <td><b>Jurisdiction-specific codes that represent
+                              additional </b> </br> Jprivileges granted to the cardholder
+                            beyond the vehicle class (such as transportation
+                            of passengers, hazardous materials, operation
+                            of motorcycles, etc.). </td>
+                          <td><b>DL</b></td>
+                          <td><b>V5ANS</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DBA</b></td>
+                          <td><b>Document
+                              Expiration Date</b> </br> Date on which the driving and identification
+                            privileges granted by the document are no
+                            longer valid. (MMDDCCYY for U.S.,
+                            CCYYMMDD for Canada)</td>
+                          <td><b>Both</b></td>
+                          <td><b>F8N</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DCS</b></td>
+                          <td><b>Customer
+                              Family Name</b> </br> Family name of the cardholder. (Family name is
+                            sometimes also called “last name” or
+                            “surname.”) Collect full name for record, print
+                            as many characters as possible on portrait side
+                            of Both/ID.</td>
+                          <td><b>Both</b></td>
+                          <td><b>V40ANS</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DAC</b></td>
+                          <td><b>Customer First
+                              Name</b> </br> First name of the cardholder</td>
+                          <td><b>Both</b></td>
+                          <td><b>40ANS</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DAD</b></td>
+                          <td><b>Customer
+                              Middle Name(s)</b> </br> MidBothe name(s) of the cardholder. In the case
+                            of multiple midBothe names they shall be
+                            separated by a comma “,”.</td>
+                          <td><b>Both</b></td>
+                          <td><b>V40ANS</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DBD</b></td>
+                          <td><b>Document Issue
+                              Date</b> </br> Date on which the document was issued.
+                            (MMDDCCYY for U.S., CCYYMMDD for
+                            Canada)</td>
+                          <td><b>Both</b></td>
+                          <td><b>F8N</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DBB</b></td>
+                          <td><b>Date of Birth</b> </br> Date on which the cardholder was born.
+                            (MMDDCCYY for U.S., CCYYMMDD for
+                            Canada)</td>
+                          <td><b>Both</b></td>
+                          <td><b>F8N</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DBC</b></td>
+                          <td><b>Physical
+                              Description –
+                              Sex</b> </br> Gender of the cardholder. 1 = male, 2 = female,
+                            9 = not specified.</td>
+                          <td><b>Both</b></td>
+                          <td><b>F1N</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DAY</b></td>
+                          <td><b>Color of cardholder's eyes. (ANSI D-20 codes)</b> </br> Color of cardholder's eyes. (ANSI D-20
+                            codes) </td>
+                          <td><b>Both</b></td>
+                          <td><b>F3A</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DAU</b></td>
+                          <td><b>Height of cardholder.</b> </br>
+                            Inches (in): number of inches followed by " in"
+                            ex. 6'1'' = "073 in"
+                            Centimeters (cm): number of centimeters
+                            followed by " cm"
+                            ex. 181 centimeters="181 cm"</td>
+                          <td><b>Both</b></td>
+                          <td><b>F6ANS</td>
+                        </tr>
+                        <tr>
+                          <td><b>DAG</b></td>
+                          <td><b>Address – Street</b>Street portion of the cardholder address.</td>
+                          <td><b>Both</b></td>
+                          <td><b>V35ANS</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DAI</b></td>
+                          <td><b>Address – City</b> </br> City portion of the cardholder address. </td>
+                          <td><b>Both</b></td>
+                          <td><b>V35ANS</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DAJ</b></td>
+                          <td><b>Address –
+                              Jurisdiction
+                              Code</b> </br> State portion of the cardholder address.</td>
+                          <td><b>Both</b></td>
+                          <td><b>F2A</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DAK</b></td>
+                          <td><b>Address –
+                              Postal Code</b> </br> Postal code portion of the cardholder address in
+                            the U.S. and Canada. If the trailing portion of
+                            the postal code in the U.S. is not known, zeros
+                            will be used to fill the trailing set of numbers up
+                            to nine (9) digits.</td>
+                          <td><b>Both</b></td>
+                          <td><b>F11ANS</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DAQ</b></td>
+                          <td><b>Customer ID
+                              Number</b> </br> The number assigned or calculated by the
+                            issuing authority.</td>
+                          <td><b>Both</b></td>
+                          <td><b>V25ANS</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DCF</b></td>
+                          <td><b>Document
+                              Discriminator</b> </br> Number must uniquely identify a particular
+                            document issued to that customer from others
+                            that may have been issued in the past. This
+                            number may serve multiple purposes of
+                            document discrimination, audit information
+                            number, and/or inventory control.</td>
+                          <td><b>Both</b></td>
+                          <td><b>V25ANS</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DCG</b></td>
+                          <td><b>Country
+                              Identification</b> </br> Country in which DL/ID is issued. U.S. = USA,
+                            Canada = CAN.</td>
+                          <td><b>Both</b></td>
+                          <td><b>F3A</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DDE</b></td>
+                          <td><b>Family name
+                              truncation</b> </br> A code that indicates whether a field has been
+                            truncated (T), has not been truncated (N), or –
+                            unknown whether truncated (U).</td>
+                          <td><b></b>Both</b></td>
+                          <td><b>F1A</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DDF</b></td>
+                          <td><b>First name
+                              truncation</b> </br> A code that indicates whether a field has been
+                            truncated (T), has not been truncated (N), or –
+                            unknown whether truncated (U).</td>
+                          <td><b>Both</b></td>
+                          <td><b>F1A</b></td>
+                        </tr>
+                        <tr>
+                          <td><b>DDG</b></td>
+                          <td><b>Middle name
+                              truncation</b> </br> A code that indicates whether a field has been
+                            truncated (T), has not been truncated (N), or –
+                            unknown whether truncated (U).</td>
+                          <td><b>Both</b></td>
+                          <td><b>F1A</b></td>
+                        </tr>
+                        <tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  
+                </div>
+                <div id="pdf417-tab" class="ui bottom attached tab segment" data-tab="pdf417">
+                  <div class="ui text segment">
+                    <canvas id="barcode"></canvas>
+                  </div>
                 </div>
               </div>
-              <div class="ui bottom attached tab segment" data-tab="standards">
-                <a href="./public/2016_Card_Design_Standard.pdf" target="_blank">
-                  <div id="download_aamva_standard" class="ui icon message">
-                    <i class="download icon"></i>
-                    <div class="content">
-                      <div class="header">
-                        DOWNLOAD 2016 AAMVA Card Design Standard
-                      </div>
-                    </div>
-                  </div>
-                </a>
-                <table class="ui striped table">
-                  <thead>
-                    <tr>
-                      <th>ID</th>
-                      <th>Name / Description</th>
-                      <th>Type</th>
-                      <th>Length</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><b>DCA</b></td>
-                      <td><b>Jurisdiction specific
-                      restriction codes</b><br> Jurisdiction-specific vehicle class / group code,
-                      designating the type of vehicle the cardholder
-                      has privilege to drive.</td>
-                      <td><b>DL</b></td>
-                      <td><b>V6ANS</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DCB</b></td>
-                      <td><b>Jurisdiction specific
-                      endorsement
-                      codes </b> </br> Jurisdiction-specific codes that represent
-                      restrictions to driving privileges (such as
-                      airbrakes, automatic transmission, daylight only,
-                      etc.).</td>
-                      <td><b>DL</b></td>
-                      <td><b>V12ANS</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DCD</b></td>
-                      <td><b>Jurisdiction-specific codes that represent
-                        additional </b> </br> Jprivileges granted to the cardholder
-                        beyond the vehicle class (such as transportation
-                        of passengers, hazardous materials, operation
-                        of motorcycles, etc.). </td>
-                      <td><b>DL</b></td>
-                      <td><b>V5ANS</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DBA</b></td>
-                      <td><b>Document
-                      Expiration Date</b> </br> Date on which the driving and identification
-                      privileges granted by the document are no
-                      longer valid. (MMDDCCYY for U.S.,
-                      CCYYMMDD for Canada)</td>
-                      <td><b>Both</b></td>
-                      <td><b>F8N</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DCS</b></td>
-                      <td><b>Customer
-                      Family Name</b> </br> Family name of the cardholder. (Family name is
-                      sometimes also called “last name” or
-                      “surname.”) Collect full name for record, print
-                      as many characters as possible on portrait side
-                      of Both/ID.</td>
-                      <td><b>Both</b></td>
-                      <td><b>V40ANS</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DAC</b></td>
-                      <td><b>Customer First
-                      Name</b> </br> First name of the cardholder</td>
-                      <td><b>Both</b></td>
-                      <td><b>40ANS</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DAD</b></td>
-                      <td><b>Customer
-                      Middle Name(s)</b> </br> MidBothe name(s) of the cardholder. In the case
-                      of multiple midBothe names they shall be
-                      separated by a comma “,”.</td>
-                      <td><b>Both</b></td>
-                      <td><b>V40ANS</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DBD</b></td>
-                      <td><b>Document Issue
-                      Date</b> </br> Date on which the document was issued.
-                      (MMDDCCYY for U.S., CCYYMMDD for
-                      Canada)</td>
-                      <td><b>Both</b></td>
-                      <td><b>F8N</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DBB</b></td>
-                      <td><b>Date of Birth</b> </br> Date on which the cardholder was born.
-                        (MMDDCCYY for U.S., CCYYMMDD for
-                        Canada)</td>
-                      <td><b>Both</b></td>
-                      <td><b>F8N</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DBC</b></td>
-                      <td><b>Physical
-                      Description –
-                      Sex</b> </br> Gender of the cardholder. 1 = male, 2 = female,
-                        9 = not specified.</td>
-                      <td><b>Both</b></td>
-                      <td><b>F1N</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DAY</b></td>
-                      <td><b>Color of cardholder's eyes. (ANSI D-20 codes)</b> </br> Color of cardholder's eyes. (ANSI D-20 codes) </td>
-                      <td><b>Both</b></td>
-                      <td><b>F3A</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DAU</b></td>
-                      <td><b>Height of cardholder.</b> </br>
-                        Inches (in): number of inches followed by " in"
-                        ex. 6'1'' = "073 in"
-                        Centimeters (cm): number of centimeters
-                        followed by " cm"
-                        ex. 181 centimeters="181 cm"</td>
-                      <td><b>Both</b></td>
-                      <td><b>F6ANS</td>
-                    </tr>
-                    <tr>
-                      <td><b>DAG</b></td>
-                      <td><b>Address – Street</b>Street portion of the cardholder address.</td>
-                      <td><b>Both</b></td>
-                      <td><b>V35ANS</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DAI</b></td>
-                      <td><b>Address – City</b> </br> City portion of the cardholder address. </td>
-                      <td><b>Both</b></td>
-                      <td><b>V35ANS</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DAJ</b></td>
-                      <td><b>Address –
-                      Jurisdiction
-                      Code</b> </br> State portion of the cardholder address.</td>
-                      <td><b>Both</b></td>
-                      <td><b>F2A</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DAK</b></td>
-                      <td><b>Address –
-                      Postal Code</b> </br> Postal code portion of the cardholder address in
-                        the U.S. and Canada. If the trailing portion of
-                        the postal code in the U.S. is not known, zeros
-                        will be used to fill the trailing set of numbers up
-                        to nine (9) digits.</td>
-                      <td><b>Both</b></td>
-                      <td><b>F11ANS</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DAQ</b></td>
-                      <td><b>Customer ID
-                      Number</b> </br> The number assigned or calculated by the
-                        issuing authority.</td>
-                      <td><b>Both</b></td>
-                      <td><b>V25ANS</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DCF</b></td>
-                      <td><b>Document
-                      Discriminator</b> </br> Number must uniquely identify a particular
-                        document issued to that customer from others
-                        that may have been issued in the past. This
-                        number may serve multiple purposes of
-                        document discrimination, audit information
-                        number, and/or inventory control.</td>
-                      <td><b>Both</b></td>
-                      <td><b>V25ANS</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DCG</b></td>
-                      <td><b>Country
-                      Identification</b> </br> Country in which DL/ID is issued. U.S. = USA,
-                        Canada = CAN.</td>
-                      <td><b>Both</b></td>
-                      <td><b>F3A</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DDE</b></td>
-                      <td><b>Family name
-                      truncation</b> </br> A code that indicates whether a field has been
-                        truncated (T), has not been truncated (N), or –
-                        unknown whether truncated (U).</td>
-                      <td><b></b>Both</b></td>
-                      <td><b>F1A</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DDF</b></td>
-                      <td><b>First name
-                      truncation</b> </br> A code that indicates whether a field has been
-                        truncated (T), has not been truncated (N), or –
-                        unknown whether truncated (U).</td>
-                      <td><b>Both</b></td>
-                      <td><b>F1A</b></td>
-                    </tr>
-                    <tr>
-                      <td><b>DDG</b></td>
-                      <td><b>Middle name
-                      truncation</b> </br> A code that indicates whether a field has been
-                      truncated (T), has not been truncated (N), or –
-                      unknown whether truncated (U).</td>
-                      <td><b>Both</b></td>
-                      <td><b>F1A</b></td>
-                    </tr>
-                    <tr>
-                  </tbody>
-                </table>
-              </div>
-              <div id="pdf417" class="ui bottom attached tab segment" data-tab="pdf417">
-                <canvas id="barcode"></canvas>
+            </div>
+          </div>
+          <div class="ui text container">
+            <div class="ui one column grid">
+              <div class="column">
               </div>
             </div>
           </div>
-        </div>
-        
-        
-        <div class="ui text container">
-          <div class="ui one column grid">
-            <div class="column">
-              
-            </div>
-          </div>
-        </div>
-      </form>
-    </div>
-    
+        </form>
+      </div>
+      <video autoplay muted loop id="background-video">
+        <source src="./public/1.mp4" type="video/mp4">
+      </video>
 <style>
   .last.container {
     margin-bottom: 300px !important;
