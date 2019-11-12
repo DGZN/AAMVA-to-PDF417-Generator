@@ -10,6 +10,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+    <!-- <link rel="stylesheet" href="./lib/shared.css" /> -->
     <style>
 
       body {
@@ -30,14 +31,14 @@
       }
 
 
-      .header {
+      /* .header {
         position: relative;
         width: 100%;
         text-align: center;
         font-weight: bold;
         font-size: 20px;
         text-align: center;
-      }
+      } */
 
       /* .container {
         position: relative;
@@ -48,6 +49,12 @@
         background: #00a4ef;
       }
 
+      h4.icon.header {
+        position: relative;
+        top: 2em;
+        margin: 4em;
+      }
+
       #text {
         position: relative;
         margin: 0 auto;
@@ -55,13 +62,13 @@
       }
 
       
-      .ui.large.attached.header {
+      /* .ui.large.attached.header {
         margin-top: 10px;
         font-size: 1.2em;
         color:#3949AB;
         background: none;
         border: 0px;
-      }
+      } */
 
       .ui.selection.dropdown {
         /* min-width: 178px !important; */
@@ -78,6 +85,10 @@
       .ui.form textarea {
       }
 
+      .ui.label {
+        cursor: pointer;
+      }
+
       #pdf417 {
         padding-left: 15%;
       }
@@ -88,10 +99,13 @@
 
       #barcode {
         position: relative;
-        left: 8%;
         width:530;
         height: 72;
         background-color: seashell;
+      }
+
+      .download.icon {
+        cursor: pointer;
       }
 
       .ui.white.segments {
@@ -99,18 +113,25 @@
         padding-left: 100px;
         background: #ffffff;
       }
+
     </style>
   </head>
+  
   <body class="main">
   <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-      
       <div id="content" class="ui container">
         <form id="aamva" class="ui form" action="POST">
           <div class="ui text white fixed container">
-            <div class="ui one column grid">
+              <h4 class="ui center aligned icon header">
+                <i class="bordered circular globe icon"></i>
+                AAMVA to pdf417 Generator
+              </h4>
+            <div class="ui one column responsive grid">
+              
               <div class="column">
+                
                 <div class="ui top attached tabular menu">
                   <a class="active item" data-tab="fields" >FIELDS</a>
                   <a class="item" data-tab="aamva" >AAMVA</a>
@@ -119,7 +140,7 @@
                 </div>
                 <div id="fields-tab" class="ui bottom attached active tab segment" data-tab="fields">
                   <div class="ui raised text segment">
-                    <div class="ui two column grid">
+                    <div class="ui two column doubling grid">
                       <div class="column">
                         <div class="field">
                           <label for="DAQ">ID Number</label>
@@ -355,18 +376,18 @@ DAW150 ZCZCANONE
                         </tr>
                       </thead>
                       <tbody>
-                        <tr>
+                        <tr id="standards-DCA-row">
                           <td><b>DCA</b></td>
-                          <td><b>Jurisdiction specific
+                          <td data-ref="desc"><b>Jurisdiction specific
                               restriction codes</b><br> Jurisdiction-specific vehicle class / group code,
                             designating the type of vehicle the cardholder
                             has privilege to drive.</td>
                           <td><b>DL</b></td>
                           <td><b>V6ANS</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DCB-row">
                           <td><b>DCB</b></td>
-                          <td><b>Jurisdiction specific
+                          <td data-ref="desc"><b>Jurisdiction specific
                               endorsement
                               codes </b> </br> Jurisdiction-specific codes that represent
                             restrictions to driving privileges (such as
@@ -375,9 +396,9 @@ DAW150 ZCZCANONE
                           <td><b>DL</b></td>
                           <td><b>V12ANS</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DCD-row">
                           <td><b>DCD</b></td>
-                          <td><b>Jurisdiction-specific codes that represent
+                          <td data-ref="desc"><b>Jurisdiction-specific codes that represent
                               additional </b> </br> Jprivileges granted to the cardholder
                             beyond the vehicle class (such as transportation
                             of passengers, hazardous materials, operation
@@ -385,9 +406,9 @@ DAW150 ZCZCANONE
                           <td><b>DL</b></td>
                           <td><b>V5ANS</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DBA-row">
                           <td><b>DBA</b></td>
-                          <td><b>Document
+                          <td data-ref="desc"><b>Document
                               Expiration Date</b> </br> Date on which the driving and identification
                             privileges granted by the document are no
                             longer valid. (MMDDCCYY for U.S.,
@@ -395,9 +416,9 @@ DAW150 ZCZCANONE
                           <td><b>Both</b></td>
                           <td><b>F8N</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DCS-row">
                           <td><b>DCS</b></td>
-                          <td><b>Customer
+                          <td data-ref="desc"><b>Customer
                               Family Name</b> </br> Family name of the cardholder. (Family name is
                             sometimes also called “last name” or
                             “surname.”) Collect full name for record, print
@@ -406,58 +427,58 @@ DAW150 ZCZCANONE
                           <td><b>Both</b></td>
                           <td><b>V40ANS</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DAC-row">
                           <td><b>DAC</b></td>
-                          <td><b>Customer First
+                          <td data-ref="desc"><b>Customer First
                               Name</b> </br> First name of the cardholder</td>
                           <td><b>Both</b></td>
                           <td><b>40ANS</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DAD-row">
                           <td><b>DAD</b></td>
-                          <td><b>Customer
+                          <td data-ref="desc"><b>Customer
                               Middle Name(s)</b> </br> MidBothe name(s) of the cardholder. In the case
                             of multiple midBothe names they shall be
                             separated by a comma “,”.</td>
                           <td><b>Both</b></td>
                           <td><b>V40ANS</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DBD-row">
                           <td><b>DBD</b></td>
-                          <td><b>Document Issue
+                          <td data-ref="desc"><b>Document Issue
                               Date</b> </br> Date on which the document was issued.
                             (MMDDCCYY for U.S., CCYYMMDD for
                             Canada)</td>
                           <td><b>Both</b></td>
                           <td><b>F8N</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DBB-row">
                           <td><b>DBB</b></td>
-                          <td><b>Date of Birth</b> </br> Date on which the cardholder was born.
+                          <td data-ref="desc"><b>Date of Birth</b> </br> Date on which the cardholder was born.
                             (MMDDCCYY for U.S., CCYYMMDD for
                             Canada)</td>
                           <td><b>Both</b></td>
                           <td><b>F8N</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DBC-row">
                           <td><b>DBC</b></td>
-                          <td><b>Physical
+                          <td data-ref="desc"><b>Physical
                               Description –
                               Sex</b> </br> Gender of the cardholder. 1 = male, 2 = female,
                             9 = not specified.</td>
                           <td><b>Both</b></td>
                           <td><b>F1N</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DAY-row">
                           <td><b>DAY</b></td>
-                          <td><b>Color of cardholder's eyes. (ANSI D-20 codes)</b> </br> Color of cardholder's eyes. (ANSI D-20
+                          <td data-ref="desc"><b>Color of cardholder's eyes. (ANSI D-20 codes)</b> </br> Color of cardholder's eyes. (ANSI D-20
                             codes) </td>
                           <td><b>Both</b></td>
                           <td><b>F3A</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DAU-row">
                           <td><b>DAU</b></td>
-                          <td><b>Height of cardholder.</b> </br>
+                          <td data-ref="desc"><b>Height of cardholder.</b> </br>
                             Inches (in): number of inches followed by " in"
                             ex. 6'1'' = "073 in"
                             Centimeters (cm): number of centimeters
@@ -466,29 +487,29 @@ DAW150 ZCZCANONE
                           <td><b>Both</b></td>
                           <td><b>F6ANS</td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DAG-row">
                           <td><b>DAG</b></td>
-                          <td><b>Address – Street</b>Street portion of the cardholder address.</td>
+                          <td data-ref="desc"><b>Address – Street</b>Street portion of the cardholder address.</td>
                           <td><b>Both</b></td>
                           <td><b>V35ANS</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DAI-row">
                           <td><b>DAI</b></td>
-                          <td><b>Address – City</b> </br> City portion of the cardholder address. </td>
+                          <td data-ref="desc"><b>Address – City</b> </br> City portion of the cardholder address. </td>
                           <td><b>Both</b></td>
                           <td><b>V35ANS</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DAJ-row">
                           <td><b>DAJ</b></td>
-                          <td><b>Address –
+                          <td data-ref="desc"><b>Address –
                               Jurisdiction
                               Code</b> </br> State portion of the cardholder address.</td>
                           <td><b>Both</b></td>
                           <td><b>F2A</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DAK-row">
                           <td><b>DAK</b></td>
-                          <td><b>Address –
+                          <td data-ref="desc"><b>Address –
                               Postal Code</b> </br> Postal code portion of the cardholder address in
                             the U.S. and Canada. If the trailing portion of
                             the postal code in the U.S. is not known, zeros
@@ -497,17 +518,17 @@ DAW150 ZCZCANONE
                           <td><b>Both</b></td>
                           <td><b>F11ANS</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DAQ-row">
                           <td><b>DAQ</b></td>
-                          <td><b>Customer ID
+                          <td data-ref="desc"><b>Customer ID
                               Number</b> </br> The number assigned or calculated by the
                             issuing authority.</td>
                           <td><b>Both</b></td>
                           <td><b>V25ANS</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DCF-row">
                           <td><b>DCF</b></td>
-                          <td><b>Document
+                          <td data-ref="desc"><b>Document
                               Discriminator</b> </br> Number must uniquely identify a particular
                             document issued to that customer from others
                             that may have been issued in the past. This
@@ -517,26 +538,26 @@ DAW150 ZCZCANONE
                           <td><b>Both</b></td>
                           <td><b>V25ANS</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DCG-row">
                           <td><b>DCG</b></td>
-                          <td><b>Country
+                          <td data-ref="desc"><b>Country
                               Identification</b> </br> Country in which DL/ID is issued. U.S. = USA,
                             Canada = CAN.</td>
                           <td><b>Both</b></td>
                           <td><b>F3A</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DDE-row">
                           <td><b>DDE</b></td>
-                          <td><b>Family name
+                          <td data-ref="desc"><b>Family name
                               truncation</b> </br> A code that indicates whether a field has been
                             truncated (T), has not been truncated (N), or –
                             unknown whether truncated (U).</td>
                           <td><b></b>Both</b></td>
                           <td><b>F1A</b></td>
                         </tr>
-                        <tr>
+                        <tr id="standards-DDF-row">
                           <td><b>DDF</b></td>
-                          <td><b>First name
+                          <td data-ref="desc"><b>First name
                               truncation</b> </br> A code that indicates whether a field has been
                             truncated (T), has not been truncated (N), or –
                             unknown whether truncated (U).</td>
@@ -559,9 +580,13 @@ DAW150 ZCZCANONE
                   
                 </div>
                 <div id="pdf417-tab" class="ui bottom attached tab segment" data-tab="pdf417">
-                  <div class="ui text segment">
+                  <div class="ui center aligned text segment">
                     <canvas id="barcode"></canvas>
+                    <h6 class="ui center aligned icon header">
+                      <i onclick="download()"  class="bordered circular download icon"></i>
+                    </h6>
                   </div>
+                  <a id="download" href="#"></a>
                 </div>
               </div>
             </div>
@@ -577,21 +602,21 @@ DAW150 ZCZCANONE
       <video autoplay muted loop id="background-video">
         <source src="./public/1.mp4" type="video/mp4">
       </video>
-<style>
-  .last.container {
-    margin-bottom: 300px !important;
-  }
-  h1.ui.center.header {
-    margin-top: 3em;
-  }
-  h2.ui.center.header {
-    margin: 4em 0em 2em;
-  }
-  h3.ui.center.header {
-    margin-top: 2em;
-    padding: 2em 0em;
-  }
-</style>
+  <style>
+    .last.container {
+      margin-bottom: 300px !important;
+    }
+    h1.ui.center.header {
+      margin-top: 3em;
+    }
+    h2.ui.center.header {
+      margin: 4em 0em 2em;
+    }
+    h3.ui.center.header {
+      margin-top: 2em;
+      padding: 2em 0em;
+    }
+  </style>
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"
   integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
@@ -599,5 +624,7 @@ DAW150 ZCZCANONE
 <script src="./lib/bcmath.js" type="text/javascript"></script>
 <script src="./lib/pdf417.js" type="text/javascript"></script>
 <script src="./lib/app.js" type="text/javascript"></script>
+<script src="https://unpkg.com/popper.js@1"></script>
+<script src="https://unpkg.com/tippy.js@5"></script>
 </body>
 </html>
