@@ -1,0 +1,67 @@
+<AAMVA>
+  <user>
+    <last e="DCS">Lastname</last>
+    <first e="DAC">Firstname</first>
+    <middle e="DAD">Middlename</middle>
+    <dob e="DBB">1970-01-01</dob>
+    <eyes e="DAY">HAZ</eyes>
+    <hair e="DAZ">BRO</hair>
+    <sex e="DBC">M</sex>
+    <height e="DAU">6'0"</height>
+    <weight e="DAW">160</weight>
+    <street e="DAG">123 Main St</street>
+    <city e="DAI">Denver</city>
+    <state e="DAJ">CO</state>
+    <postal e="DAK">80111</postal>
+    <country e="DCG">USA</country>
+    <id e="DAQ">123456789</id>
+    <issued e="DBD">2022-01-01</issued>
+    <expires e="DBA">2027-01-01</expires>
+  </user>
+  <head>
+    <filetype name="File Type">ANSI</filetype>
+    <format name="Data Format">11</format>
+    <issuer name="Issuer Identification Number">636020</issuer>
+    <state name="Issuer Name">Colorado</state>
+    <st name="Issuer Name Abbreviated">CO</st>
+    <version name="AAMVA Version Number">10</version>
+    <jurver name="Jurisdiction Version Number">00</jurver>
+    <entries name="Number of Entries">02</entries>
+  </head>
+  <subfile designator="DL" offset="41" length="256">
+    <element id="DAQ" name="Customer ID Number">123456789</element>
+    <element id="DAC" name="Driver First Name">FIRSTNAME</element>
+    <element id="DAD" name="Driver Middle Name or Initial">MIDDLENAME</element>
+    <element id="DCS" name="Customer Family Name">LASTNAME</element>
+    <element id="DCU" name="Name Suffix"></element>
+    <element id="DBB" name="Date of Birth">01011970</element>
+    <element id="DBA" name="Document Expiration Date">01012027</element>
+    <element id="DBD" name="Document Issue Date">01012022</element>
+    <element id="DCA" name="Jurisdiction-specific vehicle class">R</element>
+    <element id="DCB" name="Jurisdiction-specific restriction codes">NONE</element>
+    <element id="DCD" name="Jurisdiction-specific endorsement codes">NONE</element>
+    <element id="DAU" name="Physical Description - Height">072 in</element>
+    <element id="DAW" name="Physical Description - Weight">160</element>
+    <element id="DCL" name="Race / ethnicity"></element>
+    <element id="DAY" name="Physical Description - Eye Color">HAZ</element>
+    <element id="DAZ" name="Hair color">BRO</element>
+    <element id="DBC" name="Physical Description - Sex">1</element>
+    <element id="DAG" name="Address - Street 1">123 MAIN ST</element>
+    <element id="DAH" name="Address - Street 2"></element>
+    <element id="DAI" name="Address - City">DENVER</element>
+    <element id="DAJ" name="Address - Jurisdiction Code">CO</element>
+    <element id="DAK" name="Address - Postal Code">80111</element>
+    <element id="DCG" name="Country Identification">USA</element>
+    <element id="DCF" name="Document Discriminator">1234567</element>
+    <element id="DDE" name="Family name truncation">U</element>
+    <element id="DDF" name="First name truncation">U</element>
+    <element id="DDG" name="Middle name truncation">U</element>
+    <element id="DDB" name="Card Revision Date">07152021</element>
+    <element id="DCM" name="Standard vehicle classification"></element>
+    <element id="DCN" name="Standard endorsement code"></element>
+    <element id="DCO" name="Standard restriction code"></element>
+  </subfile>
+  <subfile designator="ZC" offset="297" length="10">
+    <element id="A" name="Optional field A">NONE</element>
+  </subfile>
+</AAMVA>
